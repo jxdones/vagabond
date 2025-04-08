@@ -121,7 +121,7 @@ func (s *SQLite) RollbackMigration(filePath string, name string) error {
 		return fmt.Errorf("failed to execute migration: %w", err)
 	}
 
-	_, err = tx.Exec("DELETE from vagabond_migrations WHERE name = ?", name)
+	_, err = tx.Exec("DELETE from vagabond_migrations WHERE migration_id = ?", name)
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to delete migration record: %w", err)
