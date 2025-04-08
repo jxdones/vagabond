@@ -5,9 +5,9 @@
 Manage your migrations with confidence. Vagabond ensures smooth evolutions, easy rollbacks, and automatically keeps your schema documented
 
 ## Features
-**Apply Migrations**: Executes pending migration scripts in chronological order.
-**Rollback Migrations**: Reverts the last applied migration or a specified number of migrations.
-
+* Apply Migrations: Executes pending migration scripts in chronological order.
+* Rollback Migrations: Reverts the last applied migration or a specified number of migrations.
+* Migration Tracking: Keeps track of applied migrations in a dedicated database table.
 
 ## Usage
 
