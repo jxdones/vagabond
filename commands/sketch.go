@@ -1,19 +1,18 @@
-package cmd
+package commands
 
 import (
 	"fmt"
+	"log"
 	"os"
-	"strconv"
+	"path/filepath"
 	"strings"
 
-	"github.com/jxdones/vagabond/cmd/utils"
+	"github.com/jxdones/vagabond/commands/utils"
 	"github.com/jxdones/vagabond/internal/db"
-	"github.com/jxdones/vagabond/internal/migrations"
+	"github.com/jxdones/vagabond/internal/schema"
 )
 
-const defaultRollbackCount = 1
-
-func UnpackMigrations(args []string) error {
+func SketchSchema(args []string) error {
 	dsn, err := utils.DSN(args)
 	if err != nil {
 		return err
@@ -28,25 +27,26 @@ func UnpackMigrations(args []string) error {
 		return fmt.Errorf("missing migrations directory")
 	}
 
-	var n int
+	var path string
 	if len(args) > 0 && !strings.Contains(args[0], dsn) {
-		parsed, err := strconv.Atoi(args[0])
-		if err != nil {
-			return fmt.Errorf("invalid option: provide a number")
-		}
-		n = parsed
+		path = args[0]
 	}
 
-	if n == 0 {
-		n = defaultRollbackCount
+	if path == "" {
+		path = migrationPath
 	}
 
-	driver, err := db.New(db.Config{Type: "sqlite", DSN: "./test.db"})
+	schemaPath := filepath.Join(path, "schema.sql")
+
+	driver, err := db.New(db.Config{Type: dbType, DSN: dsn})
 	if err != nil {
 		return err
 	}
 	defer driver.Close()
 
+	if err := schema.DumpSchema(driver, schemaPath); err != nil {
+		log.Fatalf("Migration error: %v", err)
+	}
 
-	return migrations.RollbackMigrations(driver, n)
+	return nil
 }

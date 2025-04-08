@@ -6,7 +6,7 @@ LINTER := golangci-lint
 
 .PHONY: build
 build:
-	$(GO) build -o $(TARGET)
+	$(GO) build -o $(TARGET) cmd/${TARGET}/main.go
 
 .PHONY: install
 install:

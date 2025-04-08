@@ -1,6 +1,6 @@
 package cli
 
-import "github.com/jxdones/vagabond/cmd"
+import cmd "github.com/jxdones/vagabond/commands"
 
 func RegisterCommands(cli *CLI) {
 	cli.RegisterCommand(Command{"create", "create migrations files", cmd.Create})
