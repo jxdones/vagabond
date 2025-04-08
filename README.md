@@ -8,10 +8,22 @@ Manage your migrations with confidence. Vagabond ensures smooth evolutions, easy
 * Apply Migrations: Executes pending migration scripts in chronological order.
 * Rollback Migrations: Reverts the last applied migration or a specified number of migrations.
 * Migration Tracking: Keeps track of applied migrations in a dedicated database table.
+* Schema Dumping: Generates a schema.sql file reflecting the current database schema.
 
 ## Usage
 
 ```bash
+$ vagabond
+Vagabond - Manage your migrations with confidence.
+Usage:
+  vagabond <command> [options]
+Commands:
+  create     Create migrations files
+  pack       Apply pending migrations
+  unpack     Rollback 1 or n migrations
+  sketch     Dump the current database schema. If no directory is provided, it will be created under the migrations directory
+  help       Show this help message
+  version    Show the Vagabond version
 $ vagabond create your_new_migration
 $ vagabond pack --dsn="./your_database.db" # apply migrations in a sqlite database
 $ vagabond unpack --dsn="./your_database.db" # rollback migrations in a sqlite database

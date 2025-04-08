@@ -7,4 +7,5 @@ type Driver interface {
 	GetAppliedMigrationsList() ([]string, error)
 	ExecuteMigration(filePath string) error
 	RollbackMigration(filePath, name string) error
+	DumpSchema() (string, error)
 }
