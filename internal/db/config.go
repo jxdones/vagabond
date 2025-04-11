@@ -7,7 +7,7 @@ import (
 
 type Config struct {
 	Type string
-	DSN string
+	DSN  string
 }
 
 func New(cfg Config) (Driver, error) {

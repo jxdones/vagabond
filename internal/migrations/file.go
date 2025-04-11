@@ -91,7 +91,7 @@ func RollbackMigrations(driver db.Driver, n int) error {
 		return nil
 	}
 
-	// ensure that n will always be capped to total 
+	// ensure that n will always be capped to total
 	if n > total {
 		n = total
 	}

@@ -41,12 +41,11 @@ func UnpackMigrations(args []string) error {
 		n = defaultRollbackCount
 	}
 
-	driver, err := db.New(db.Config{Type: "sqlite", DSN: "./test.db"})
+	driver, err := db.New(db.Config{Type: dbType, DSN: dsn})
 	if err != nil {
 		return err
 	}
 	defer driver.Close()
-
 
 	return migrations.RollbackMigrations(driver, n)
 }

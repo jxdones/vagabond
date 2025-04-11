@@ -7,12 +7,14 @@ import (
 
 type Command struct {
 	Name        string
+	Usage       string
 	Description string
 	Execute     func(args []string) error
 }
 
 type CLI struct {
-	commands map[string]Command
+	commands    map[string]Command
+	commandList []Command
 }
 
 func NewCli() *CLI {
@@ -23,6 +25,7 @@ func NewCli() *CLI {
 
 func (c *CLI) RegisterCommand(cmd Command) {
 	c.commands[cmd.Name] = cmd
+	c.commandList = append(c.commandList, cmd) // ensure the commands are always in the added order
 }
 
 func (c *CLI) Run() {
@@ -50,7 +53,14 @@ func (c *CLI) ShowHelp() {
 	fmt.Println("Usage:")
 	fmt.Println("  vagabond <command> [options]")
 	fmt.Println("Commands:")
-	for _, cmd := range c.commands {
-		fmt.Printf("  %-10s %s\n", cmd.Name, cmd.Description)
+	for _, cmd := range c.commandList {
+		argHint := ""
+		if cmd.Usage != "" {
+			argHint = " " + cmd.Usage
+		}
+		fmt.Printf("  %-15s %s\n", cmd.Name+argHint, cmd.Description)
 	}
+
+	fmt.Println("\nOptions:")
+	fmt.Println("  --dsn      Database connection string (required)")
 }

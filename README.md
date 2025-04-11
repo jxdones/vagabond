@@ -19,15 +19,18 @@ Vagabond - Manage your migrations with confidence.
 Usage:
   vagabond <command> [options]
 Commands:
-  create     create migrations files
-  pack       apply pending migrations
-  unpack     rollback 1 or n migrations
-  sketch     dump the current database schema. If no directory is provided, it will be created under the migrations directory
-  help       print this help message
-  version    print vagabond version
+  create <name>   create migrations files
+  pack            apply pending migrations
+  unpack [n]      rollback last n migrations (default 1)
+  sketch [dir]    dump the current database schema. (default dir: migrations)
+  help            print this help message
+  version         print vagabond version
+
+Options:
+  --dsn      Database connection string (required)
 $ vagabond create your_new_migration
-$ vagabond pack --dsn="./your_database.db" # apply migrations in a sqlite database
-$ vagabond unpack --dsn="./your_database.db" # rollback migrations in a sqlite database
+$ vagabond pack --dsn="./your_database.db"
+$ vagabond unpack --dsn="./your_database.db"
 ```
 
 ## Contributing

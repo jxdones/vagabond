@@ -13,7 +13,7 @@ func DumpSchema(driver db.Driver, outputPath string) error {
 		return fmt.Errorf("failed to dump schema: %w", err)
 	}
 
-	if err := os.WriteFile(outputPath, []byte(schema), 0644); err != nil {
+	if err := os.WriteFile(outputPath, []byte(schema), 0o644); err != nil {
 		return fmt.Errorf("failed to create scheme file: %w", err)
 	}
 	return nil

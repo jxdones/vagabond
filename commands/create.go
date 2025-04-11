@@ -6,6 +6,7 @@ import (
 
 	"github.com/jxdones/vagabond/internal/migrations"
 )
+
 const migrationPath = "migrations"
 
 func Create(args []string) error {
@@ -15,7 +16,7 @@ func Create(args []string) error {
 	name := args[0]
 
 	if _, err := os.Stat(migrationPath); os.IsNotExist(err) {
-		err := os.Mkdir(migrationPath, 0755)
+		err := os.Mkdir(migrationPath, 0o755)
 		if err != nil {
 			fmt.Println("error creating migrations directory:", err)
 		}
