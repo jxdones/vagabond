@@ -95,8 +95,9 @@ func (s *SQLite) ExecuteMigration(filePath string) error {
 		return fmt.Errorf("failed to execute migration: %w", err)
 	}
 
-	_, migration_id := filepath.Split(filePath)
-	_, err = tx.Exec("INSERT INTO vagabond_migrations (migration_id) VALUES (?)", migration_id)
+	_, migrationFile := filepath.Split(filePath)
+	migrationID := strings.TrimSuffix(migrationFile, ".sql")
+	_, err = tx.Exec("INSERT INTO vagabond_migrations (migration_id) VALUES (?)", migrationID)
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to record migration: %w", err)
@@ -121,7 +122,8 @@ func (s *SQLite) RollbackMigration(filePath string, name string) error {
 		return fmt.Errorf("failed to execute migration: %w", err)
 	}
 
-	_, err = tx.Exec("DELETE from vagabond_migrations WHERE migration_id = ?", name)
+	migrationID := strings.TrimSuffix(name, ".sql")
+	_, err = tx.Exec("DELETE from vagabond_migrations WHERE migration_id = ?", migrationID)
 	if err != nil {
 		tx.Rollback()
 		return fmt.Errorf("failed to delete migration record: %w", err)
