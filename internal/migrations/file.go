@@ -98,7 +98,7 @@ func RollbackMigrations(driver db.Driver, n int) error {
 
 	toRollback := appliedMigrations[total-n:]
 	for i := len(toRollback) - 1; i >= 0; i-- {
-		name := toRollback[i]
+		name := toRollback[i] + ".sql"
 		downFile := downFileName(name)
 		path := filepath.Join(migrationsPath, downFile)
 

@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/jxdones/vagabond/commands/utils"

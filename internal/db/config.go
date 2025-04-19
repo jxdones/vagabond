@@ -15,6 +15,8 @@ func New(cfg Config) (Driver, error) {
 	switch strings.ToLower(cfg.Type) {
 	case "sqlite":
 		driver = &SQLite{}
+	case "postgres":
+		driver = &Postgres{}
 	default:
 		return nil, fmt.Errorf("unsupported database: %s", cfg.Type)
 	}
