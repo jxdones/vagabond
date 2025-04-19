@@ -45,7 +45,7 @@ func SketchSchema(args []string) error {
 	defer driver.Close()
 
 	if err := schema.DumpSchema(driver, schemaPath); err != nil {
-		log.Fatalf("Migration error: %v", err)
+		return fmt.Errorf("error dumping schema: %w", err)
 	}
 
 	return nil

@@ -18,7 +18,8 @@ run: build
 
 .PHONY: test
 test:
-	$(GO) test ./...
+	$(GO) test -v ./...
+	@echo "\nAll tests completed."
 
 .PHONY: fmt
 fmt:

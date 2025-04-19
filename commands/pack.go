@@ -30,8 +30,8 @@ func PackMigration(args []string) error {
 	}
 	defer driver.Close()
 
-	if err := migrations.ApplyMigrations(driver, "sqlite"); err != nil {
-		log.Fatalf("Migration error: %v", err)
+	if err := migrations.ApplyMigrations(driver, dbType); err != nil {
+		return fmt.Errorf("error applying migrations: %w", err)
 	}
 
 	return nil
