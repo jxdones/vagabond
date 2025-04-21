@@ -11,7 +11,7 @@ Manage your migrations with confidence. Vagabond ensures smooth evolutions, easy
 * Schema Dumping: Generates a schema.sql file reflecting the current database schema.
 
 ## Usage
-Vagabond currently supports SQLite only. Support for MariaDB/MySQL and PostgreSQL will be added soon.
+Vagabond currently supports SQLite and PostgreSQL. Support for MariaDB/MySQL.
 
 ```bash
 $ vagabond

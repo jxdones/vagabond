@@ -6,7 +6,7 @@ LINTER := golangci-lint
 
 .PHONY: build
 build:
-	$(GO) build -o $(TARGET) cmd/${TARGET}/main.go
+	$(GO) build -o bin/$(TARGET) cmd/${TARGET}/main.go
 
 .PHONY: install
 install:
@@ -39,7 +39,7 @@ version:
 
 .PHONY: clean
 clean:
-	rm -f $(TARGET)
+	rm -rf bin
 	rm -rf migrations
 
 .PHONY: release
