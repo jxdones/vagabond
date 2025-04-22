@@ -9,10 +9,9 @@ Manage your migrations with confidence. Vagabond ensures smooth evolutions, easy
 * Rollback Migrations: Reverts the last applied migration or a specified number of migrations.
 * Migration Tracking: Keeps track of applied migrations in a dedicated database table.
 * Schema Dumping: Generates a schema.sql file reflecting the current database schema.
+* Multi-Database Support: Supports PostgreSQL and SQLite.
 
 ## Usage
-Vagabond currently supports SQLite and PostgreSQL. Support for MariaDB/MySQL.
-
 ```bash
 $ vagabond
 Vagabond - Manage your migrations with confidence.
